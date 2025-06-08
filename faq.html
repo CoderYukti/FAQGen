@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>FAQ Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 860px;
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #222;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        label {
+            font-weight: 600;
+            display: block;
+            margin: 20px 0 8px;
+            color: #333;
+        }
+
+        input[type="file"] {
+            padding: 10px;
+            background: #f7f9fc;
+            border: 1px dashed #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 15px;
+            font-size: 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            min-height: 200px;
+            resize: vertical;
+            background: #fdfdfd;
+        }
+
+        button {
+            margin-top: 25px;
+            background-color: #4f46e5;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover:not(:disabled) {
+            background-color: #3730a3;
+        }
+
+        button:disabled {
+            background-color: #c9c9da;
+            cursor: not-allowed;
+        }
+
+        h2 {
+            font-size: 20px;
+            margin-top: 40px;
+            color: #222;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+
+        pre#htmlCode {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            white-space: pre-wrap;
+            font-family: "Courier New", monospace;
+            font-size: 14px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .btn-secondary {
+            margin-top: 10px;
+            background-color: #64748b;
+        }
+
+        .btn-secondary:hover {
+            background-color: #475569;
+        }
+
+        .custom-file-upload {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            background-color: #eef2ff;
+            color: #4f46e5;
+            font-weight: 600;
+            font-size: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            user-select: none;
+            transition: background-color 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .custom-file-upload:hover {
+            background-color: #c7d2fe;
+            border-color: #4f46e5;
+        }
+
+        .custom-file-upload svg {
+            stroke: #4f46e5;
+        }
+
+        #docxUpload:focus+.custom-file-upload,
+        .custom-file-upload:focus {
+            outline: 2px solid #4f46e5;
+            outline-offset: 2px;
+        }
+
+        @media screen and (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>📄 FAQ Generator</h1>
+
+        <label for="docxUpload">Upload FAQ from .docx file</label>
+        <label class="custom-file-upload" for="docxUpload">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="#4f46e5" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-upload" viewBox="0 0 24 24">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="17 8 12 3 7 8" />
+                <line x1="12" y1="3" x2="12" y2="15" />
+            </svg>
+            Choose DOCX File
+        </label>
+        <input type="file" id="docxUpload" accept=".docx" hidden />
+        <span id="fileName" style="margin-left:12px; font-style: italic; color:#555;">No file chosen</span>
+
+
+        <label for="faqInput">Or paste your FAQ content below</label>
+        <textarea id="faqInput" placeholder="Format your FAQs like this:
+
+<strong>What is your return policy?</strong>
+You can return items within 30 days of purchase.
+
+<strong>What are the payment options?</strong>
+- Credit card
+- PayPal
+- Bank transfer
+
+Leave a blank line between each question and answer.
+
+Use &lt;strong&gt; tags around questions.
+Use '- ' at the start of lines to create bullet points in answers."></textarea>
+
+
+
+        <button id="generateButton">🚀 Generate FAQ HTML</button>
+
+        <h2>Generated HTML</h2>
+        <pre id="htmlCode"></pre>
+        <button id="copyButton" class="btn-secondary" disabled>📋 Copy HTML</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
+    <script src="faq.js"></script>
+</body>
+
+</html>
