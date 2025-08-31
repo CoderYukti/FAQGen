@@ -5,6 +5,10 @@
     <meta charset="UTF-8" />
     <title>FAQ Generator</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <!-- FAQ icon using emoji in SVG -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❓</text></svg>">
+
     <style>
         * {
             box-sizing: border-box;
@@ -176,7 +180,7 @@
 
 
         <label for="faqInput">Or paste your FAQ content below</label>
-        <textarea id="faqInput" placeholder="Format your FAQs like this:
+        <textarea id="faqInput" placeholder="📌 Format your FAQs like this:
 
 <strong>What is your return policy?</strong>
 You can return items within 30 days of purchase.
@@ -186,10 +190,13 @@ You can return items within 30 days of purchase.
 - PayPal
 - Bank transfer
 
-Leave a blank line between each question and answer.
+💡 Tips:
+- Leave a blank line between each question and answer pair.
+- Wrap your questions in &lt;strong&gt; tags.
+- Start lines with '- ' to create bullet points in answers.
+- You can also use Ctrl+B to wrap selected text in &lt;strong&gt; for bold questions.
+"></textarea>
 
-Use &lt;strong&gt; tags around questions.
-Use '- ' at the start of lines to create bullet points in answers."></textarea>
 
 
 
@@ -203,4 +210,5 @@ Use '- ' at the start of lines to create bullet points in answers."></textarea>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
     <script src="js/faq.js"></script>
 </body>
+
 </html>
